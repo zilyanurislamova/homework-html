@@ -90,7 +90,7 @@ modalElement.addEventListener('submit', function (e) {
     const kpp = document.getElementById('kpp').value;
 
     const index = modalElement.getAttribute("data-index");
-    if (index !== null && index !== "") {
+    if (index) {
         counterparties[index] = {name: name, inn: inn, address: address, kpp: kpp};
     } else {
         counterparties.push({name: name, inn: inn, address: address, kpp: kpp});

@@ -4,7 +4,10 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 
 module.exports = {
-    entry: './src/main.js',
+    entry: './src/main.jsx',
+    resolve: {
+        extensions: ['.js', '.jsx']
+    },
     module: {
 
         rules: [
@@ -31,6 +34,12 @@ module.exports = {
                 test: /\.html$/i,
                 loader: "html-loader",
             },
+            {
+                test: /\.j[st]x/i,
+                use:
+                    ['babel-loader'],
+                exclude: /node_modules/
+            }
         ],
     },
     output: {

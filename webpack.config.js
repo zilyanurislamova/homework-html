@@ -2,11 +2,12 @@ const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 
 module.exports = {
-    entry: './src/main.jsx',
+    entry: './src/main.tsx',
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
     },
     module: {
 
@@ -35,7 +36,7 @@ module.exports = {
                 loader: "html-loader",
             },
             {
-                test: /\.j[st]x/i,
+                test: /\.[jt]sx?$/i,
                 use:
                     ['babel-loader'],
                 exclude: /node_modules/
@@ -53,6 +54,11 @@ module.exports = {
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: 'css/[name].css',
+        }),
+        new ForkTsCheckerWebpackPlugin({
+            typescript: {
+                configFile: path.resolve(__dirname, 'tsconfig.json')
+            }
         })
     ]
 };

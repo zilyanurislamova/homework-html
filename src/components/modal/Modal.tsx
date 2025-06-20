@@ -1,4 +1,15 @@
-const Modal = ({isOpen, formData, onChange, onSubmit, onCancel}) => {
+import React from "react";
+import {Counterparty} from "../../data/counterpartiesData";
+
+type Props = {
+    isOpen: boolean;
+    formData: Counterparty;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+    onCancel: () => void;
+}
+
+const Modal: React.FC<Props> = ({isOpen, formData, onChange, onSubmit, onCancel}) => {
     if (!isOpen) return null;
 
     return (
@@ -26,7 +37,7 @@ const Modal = ({isOpen, formData, onChange, onSubmit, onCancel}) => {
                                 <label className="block mb-2 text-sm font-medium text-gray-900">ИНН</label>
                                 <input type="text" name="inn" value={formData.inn} onChange={onChange}
                                        placeholder="7707083893" pattern="\d{11}"
-                                       maxLength="11"
+                                       maxLength={11}
                                        title="ИНН должен состоять из 11 цифр"
                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                        required/>
@@ -42,7 +53,7 @@ const Modal = ({isOpen, formData, onChange, onSubmit, onCancel}) => {
                                 <label className="block mb-2 text-sm font-medium text-gray-900">КПП</label>
                                 <input type="text" name="kpp" value={formData.kpp} onChange={onChange}
                                        placeholder="773601001" pattern="\d{9}"
-                                       maxLength="9"
+                                       maxLength={9}
                                        title="КПП должен состоять из 9 цифр"
                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                        required/>

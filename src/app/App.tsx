@@ -1,14 +1,14 @@
-import {useState} from 'react';
-import counterpartiesData from "../data/counterpartiesData";
+import React, {useState} from 'react';
+import counterpartiesData, {Counterparty} from "../data/counterpartiesData";
 import Table from "../components/table/Table";
 import Modal from "../components/modal/Modal";
 import Header from "../components/header/Header";
 
 const App = () => {
-    const [counterparties, setCounterparties] = useState(counterpartiesData);
-    const [formData, setFormData] = useState({name: '', inn: '', address: '', kpp: ''});
-    const [editIndex, setEditIndex] = useState(null);
-    const [isModalOpen, setModalOpen] = useState(false);
+    const [counterparties, setCounterparties] = useState<Counterparty[]>(counterpartiesData);
+    const [formData, setFormData] = useState<Counterparty>({name: '', inn: '', address: '', kpp: ''});
+    const [editIndex, setEditIndex] = useState<number | null>(null);
+    const [isModalOpen, setModalOpen] = useState<boolean>(false);
 
     const handleAdd = () => {
         setFormData({name: '', inn: '', address: '', kpp: ''});
@@ -16,24 +16,25 @@ const App = () => {
         setModalOpen(true);
     };
 
-    const handleEdit = (index) => {
+    const handleEdit = (index: number) => {
         setFormData(counterparties[index]);
         setEditIndex(index);
         setModalOpen(true);
     };
 
-    const handleDelete = (index) => {
+    const handleDelete = (index: number) => {
         const updated = [...counterparties];
         updated.splice(index, 1);
         setCounterparties(updated);
     }
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
         setFormData(prev => ({...prev, [name]: value}));
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         if (editIndex !== null) {
             const updated = [...counterparties];
             updated[editIndex] = formData;

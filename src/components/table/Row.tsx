@@ -1,4 +1,13 @@
-const Row = ({counterparty, onDelete, onEdit}) => {
+import React from "react";
+import {Counterparty} from "../../data/counterpartiesData";
+
+type Props = {
+    counterparty: Counterparty;
+    onDelete: () => void;
+    onEdit: () => void;
+}
+
+const Row: React.FC<Props> = ({counterparty, onDelete, onEdit}) => {
     const {name, inn, address, kpp} = counterparty;
 
     return (

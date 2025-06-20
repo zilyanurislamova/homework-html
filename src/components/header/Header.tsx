@@ -1,4 +1,10 @@
-const Header = ({onAdd}) => {
+import React from "react";
+
+type Props = {
+    onAdd: () => void;
+}
+
+const Header: React.FC<Props> = ({onAdd}) => {
     return (
         <header className="bg-white flex py-3 justify-between items-center">
             <a href="https://www.moysklad.ru/" className="flex items-end space-x-1">

@@ -1,4 +1,11 @@
-const counterpartiesData = [
+export type Counterparty = {
+    name: string;
+    inn: string;
+    address: string;
+    kpp: string;
+}
+
+const counterpartiesData: Counterparty[] = [
     {
         name: 'ООО "Покупатель"',
         inn: '12345678945',
